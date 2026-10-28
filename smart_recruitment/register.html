@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | StudentGig</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter',sans-serif;min-height:100vh;background:#f1f5f9;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+        .page-wrap{width:100%;max-width:520px}
+        .logo-row{text-align:center;margin-bottom:28px}
+        .logo-badge{display:inline-flex;align-items:center;gap:10px;background:#0f172a;border-radius:12px;padding:10px 20px;color:white;font-weight:700;font-size:1rem}
+        .logo-badge i{color:#818cf8}
+        .card{background:white;border-radius:20px;padding:40px;border:1px solid #e2e8f0;box-shadow:0 4px 24px rgba(0,0,0,0.06)}
+        .card h2{font-size:1.5rem;font-weight:700;color:#0f172a;letter-spacing:-0.3px;margin-bottom:4px}
+        .card p{color:#64748b;font-size:0.875rem;margin-bottom:28px}
+        .role-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+        .role-card{border:2px solid #e2e8f0;border-radius:12px;padding:16px;cursor:pointer;transition:all 0.2s;text-align:center;position:relative}
+        .role-card:hover{border-color:#a5b4fc;background:#fafbff}
+        .role-card.selected{border-color:#6366f1;background:#eef2ff}
+        .role-card input{position:absolute;opacity:0;pointer-events:none}
+        .role-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 10px}
+        .role-icon.student{background:#eff6ff;color:#2563eb}
+        .role-icon.employer{background:#ecfdf5;color:#10b981}
+        .role-title{font-size:0.875rem;font-weight:600;color:#0f172a;margin-bottom:2px}
+        .role-sub{font-size:0.72rem;color:#64748b}
+        .form-group{margin-bottom:18px}
+        .form-label{display:block;font-size:0.75rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}
+        .input-wrap{position:relative}
+        .input-wrap i{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px}
+        .form-control{width:100%;padding:11px 13px 11px 38px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:0.875rem;font-family:inherit;color:#0f172a;outline:none;transition:border-color 0.2s,box-shadow 0.2s;background:#f8fafc}
+        .form-control:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,0.1);background:white}
+        .btn-register{width:100%;padding:13px;background:#6366f1;color:white;border:none;border-radius:10px;font-size:0.95rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px}
+        .btn-register:hover{background:#4f46e5;transform:translateY(-1px);box-shadow:0 8px 24px rgba(99,102,241,0.3)}
+        .login-row{text-align:center;margin-top:20px;font-size:0.875rem;color:#64748b}
+        .login-row a{color:#6366f1;font-weight:600;text-decoration:none}
+        .password-hint{font-size:0.72rem;color:#94a3b8;margin-top:5px}
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <div class="logo-row">
+        <div class="logo-badge"><i class="fas fa-bolt"></i> StudentGig</div>
+    </div>
+    <div class="card">
+        <h2>Create your account</h2>
+        <p>Join thousands of students earning with their skills</p>
+
+        <div class="role-grid">
+            <label class="role-card selected" id="card-student">
+                <input type="radio" name="role_visual" value="candidate" checked>
+                <div class="role-icon student"><i class="fas fa-graduation-cap"></i></div>
+                <div class="role-title">Student</div>
+                <div class="role-sub">Find & complete tasks</div>
+            </label>
+            <label class="role-card" id="card-employer">
+                <input type="radio" name="role_visual" value="employer">
+                <div class="role-icon employer"><i class="fas fa-briefcase"></i></div>
+                <div class="role-title">Employer</div>
+                <div class="role-sub">Post tasks & hire talent</div>
+            </label>
+        </div>
+
+        <form action="register.php" method="POST" id="regForm">
+            <input type="hidden" name="role" id="roleField" value="candidate">
+
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <div class="input-wrap">
+                    <i class="fas fa-user"></i>
+                    <input class="form-control" type="text" name="name" placeholder="Your full name" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <div class="input-wrap">
+                    <i class="fas fa-envelope"></i>
+                    <input class="form-control" type="email" name="email" placeholder="you@example.com" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <div class="input-wrap">
+                    <i class="fas fa-lock"></i>
+                    <input class="form-control" type="password" name="password" placeholder="Min 8 characters" required>
+                </div>
+                <div class="password-hint">Use at least 8 characters with letters and numbers</div>
+            </div>
+
+            <button type="submit" name="register" class="btn-register"><i class="fas fa-user-plus"></i> Create Account</button>
+        </form>
+
+        <div class="login-row">Already have an account? <a href="index.html">Sign in</a></div>
+    </div>
+</div>
+<script>
+document.querySelectorAll('.role-card').forEach(card => {
+    card.addEventListener('click', function() {
+        document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+        document.getElementById('roleField').value = this.querySelector('input').value;
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | StudentGig</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter',sans-serif;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:#0f172a}
+        /* LEFT PANEL */
+        .left{background:#0f172a;display:flex;flex-direction:column;justify-content:space-between;padding:48px;position:relative;overflow:hidden}
+        .left::before{content:'';position:absolute;top:-100px;left:-100px;width:400px;height:400px;background:#6366f1;border-radius:50%;opacity:0.08;pointer-events:none}
+        .left::after{content:'';position:absolute;bottom:-80px;right:-80px;width:300px;height:300px;background:#818cf8;border-radius:50%;opacity:0.06;pointer-events:none}
+        .logo-area{position:relative;z-index:1}
+        .logo-box{display:inline-flex;align-items:center;gap:12px;margin-bottom:48px}
+        .logo-icon{width:44px;height:44px;background:#6366f1;border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-size:20px}
+        .logo-text{font-size:1.25rem;font-weight:700;color:white}
+        .hero-text h1{font-size:2.6rem;font-weight:800;color:white;line-height:1.1;letter-spacing:-1px;margin-bottom:16px}
+        .hero-text h1 span{color:#818cf8}
+        .hero-text p{color:#94a3b8;font-size:1rem;line-height:1.6;max-width:380px}
+        .features{display:flex;flex-direction:column;gap:16px;margin-top:48px;position:relative;z-index:1}
+        .feature{display:flex;align-items:center;gap:14px}
+        .feature-dot{width:36px;height:36px;background:rgba(99,102,241,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#818cf8;font-size:14px;flex-shrink:0}
+        .feature-text{font-size:0.875rem;color:#94a3b8}
+        .feature-text strong{color:#e2e8f0;display:block;margin-bottom:1px}
+        .bottom-strip{color:#475569;font-size:0.75rem;position:relative;z-index:1}
+        /* RIGHT PANEL */
+        .right{background:white;display:flex;align-items:center;justify-content:center;padding:48px}
+        .form-box{width:100%;max-width:400px}
+        .form-box h2{font-size:1.7rem;font-weight:700;color:#0f172a;letter-spacing:-0.5px;margin-bottom:6px}
+        .form-box .sub{color:#64748b;font-size:0.9rem;margin-bottom:36px}
+        .form-group{margin-bottom:20px}
+        .form-label{display:block;font-size:0.75rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}
+        .input-wrap{position:relative}
+        .input-wrap i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:14px}
+        .form-control{width:100%;padding:12px 14px 12px 40px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:0.9rem;font-family:inherit;color:#0f172a;outline:none;transition:border-color 0.2s,box-shadow 0.2s;background:#f8fafc}
+        .form-control:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,0.1);background:white}
+        .btn-login{width:100%;padding:13px;background:#6366f1;color:white;border:none;border-radius:10px;font-size:0.95rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px}
+        .btn-login:hover{background:#4f46e5;transform:translateY(-1px);box-shadow:0 8px 24px rgba(99,102,241,0.3)}
+        .divider{text-align:center;color:#94a3b8;font-size:0.8rem;margin:20px 0;position:relative}
+        .divider::before,.divider::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:#e2e8f0}
+        .divider::before{left:0}.divider::after{right:0}
+        .links-row{display:flex;justify-content:space-between;margin-top:20px}
+        .links-row a{font-size:0.8rem;color:#6366f1;text-decoration:none;font-weight:500}
+        .links-row a:hover{text-decoration:underline}
+        .register-row{text-align:center;margin-top:28px;font-size:0.875rem;color:#64748b}
+        .register-row a{color:#6366f1;font-weight:600;text-decoration:none}
+        .register-row a:hover{text-decoration:underline}
+        .leaderboard-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:0.8rem;color:#64748b;text-decoration:none;border:1px solid #e2e8f0;padding:8px 14px;border-radius:8px;transition:all 0.2s}
+        .leaderboard-link:hover{border-color:#6366f1;color:#6366f1}
+        @media(max-width:768px){body{grid-template-columns:1fr}.left{display:none}}
+    </style>
+</head>
+<body>
+<div class="left">
+    <div class="logo-area">
+        <div class="logo-box">
+            <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+            <span class="logo-text">StudentGig</span>
+        </div>
+        <div class="hero-text">
+            <h1>Earn while you <span>learn.</span></h1>
+            <p>The micro-task platform built for students. Find real work, build your portfolio, and get paid — all while studying.</p>
+        </div>
+        <div class="features">
+            <div class="feature"><div class="feature-dot"><i class="fas fa-search"></i></div><div class="feature-text"><strong>Browse real tasks</strong>Posted by local employers</div></div>
+            <div class="feature"><div class="feature-dot"><i class="fas fa-star"></i></div><div class="feature-text"><strong>Build your reputation</strong>Get rated and climb the leaderboard</div></div>
+            <div class="feature"><div class="feature-dot"><i class="fas fa-wallet"></i></div><div class="feature-text"><strong>Get paid for your skills</strong>No experience required to start</div></div>
+        </div>
+    </div>
+    <div class="bottom-strip">EST. 2026 &bull; Built for the next generation</div>
+</div>
+
+<div class="right">
+    <div class="form-box">
+        <h2>Welcome back</h2>
+        <p class="sub">Sign in to your StudentGig account</p>
+
+        <form action="login.php" method="POST">
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <div class="input-wrap">
+                    <i class="fas fa-envelope"></i>
+                    <input class="form-control" type="email" name="email" placeholder="you@example.com" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <div class="input-wrap">
+                    <i class="fas fa-lock"></i>
+                    <input class="form-control" type="password" name="password" placeholder="••••••••" required>
+                </div>
+            </div>
+            <button type="submit" name="login" class="btn-login"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+        </form>
+
+        <div class="links-row">
+            <a href="register.html">Create account</a>
+            <a href="forgot_password.php">Forgot password?</a>
+        </div>
+
+        <div class="register-row">
+            New to StudentGig? <a href="register.html">Sign up free</a>
+        </div>
+
+        <div style="text-align:center;">
+            <a href="leaderboard.php" class="leaderboard-link"><i class="fas fa-trophy" style="color:#f59e0b"></i> View Top Freelancers</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
